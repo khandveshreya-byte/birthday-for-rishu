@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Rishu❤️</title>
+
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0f2027, #05080f);
+      color: #e6edf3;
+      font-family: "Courier New", monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url("https://i.imgur.com/7b1YQ9N.png");
+      opacity: 0.25;
+      z-index: 0;
+    }
+
+    .terminal {
+      background: rgba(13, 17, 23, 0.92);
+      padding: 28px;
+      border-radius: 14px;
+      width: 90%;
+      max-width: 720px;
+      box-shadow: 0 0 40px rgba(88,166,255,0.25);
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(6px);
+    }
+
+    .title {
+      color: #79c0ff;
+      margin-bottom: 18px;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      background-color: #79c0ff;
+      animation: blink 1s infinite;
+      margin-left: 6px;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .music-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(35,134,54,0.9);
+      color: white;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+    }
+
+    .footer {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #8b949e;
+    }
+
+    .easter-egg {
+      margin-top: 16px;
+      color: #a5d6ff;
+      display: none;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="terminal">
+  <button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
+
+  <div class="title">Happiest Birthday Sir jiii ❤️</div>
+
+  <pre id="text"></pre><span class="cursor"></span>
+
+  <pre id="egg" class="easter-egg">
+> Hidden log detected...
+> A small reminder from your girlfriend 🙄
+> Ik Sometimes I get angry over small things
+> But I really appreciate your efforts 💓
+> Waiting to meet you IRL and hug you tightly 🫠
+  </pre>
+
+  <div class="footer">At least we are under the same sky 🌌</div>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const message = `
+> Date detected: Dec 28 2025
+> Distance check: ongoing
+> Connection: steady ✨
+
+Heyy Babee 💗
+
+You know it's really nice, meeting someone online,
+out of nowhere and realizing
+it's not about distance — it's about the person ♡
+
+So this is a small
+birthday wish
+just for you 🫶🏻
+
+As you turn 19 today, may it bring:
+✔ Calm nights
+✔ Greater achievements
+✔ Moments worth smiling at
+✔ Prosperous health
+✔ Aur thodaa pyaar bhi 😂
+
+console.log("Happy Birthday Rishuu ❤️");
+
+— Rakshu 💕
+  `;
+
+  let index = 0;
+  const speed = 42;
+  const textElement = document.getElementById("text");
+  const music = document.getElementById("bgMusic");
+  const egg = document.getElementById("egg");
+  let eggShown = false;
+
+  music.volume = 0;
+
+  function typeEffect() {
+    if (index < message.length) {
+      textElement.textContent += message.charAt(index);
+      index++;
+      setTimeout(typeEffect, speed);
+    }
+  }
+
+  function fadeInMusic() {
+    let vol = 0;
+    const fade = setInterval(() => {
+      if (vol < 0.35) {
+        vol += 0.01;
+        music.volume = vol;
+      } else {
+        clearInterval(fade);
+      }
+    }, 180);
+  }
+
+  function toggleMusic() {
+    if (music.paused) {
+      music.play();
+      fadeInMusic();
+    } else {
+      music.pause();
+    }
+  }
+
+  document.body.addEventListener("click", () => {
+    music.play();
+    fadeInMusic();
+  }, { once: true });
+
+  document.addEventListener("keydown", (e) => {
+    if ((e.key === "d" || e.key === "D") && !eggShown) {
+      eggShown = true;
+      egg.style.display = "block";
+      setTimeout(() => egg.style.opacity = 1, 100);
+    }
+  });
+
+  typeEffect();
+</script>
+
+</body>
+</html>
